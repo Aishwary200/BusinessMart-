@@ -1,14 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer, createSwitchNavigator, } from 'react-navigation';
+import { AppDrawerNavigator } from './component/AppDrawerNavigator'
+import { TabNavigator } from './component/AppTabNavigator'
+import WelcomeScreen from './screens/WelcomeScreen';
+import SignUp from './screens/SignUpScreen'
+import HomeScreen from './screens/HomeScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <AppContainer />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -19,3 +26,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+const switchNavigator = createSwitchNavigator({
+  WelcomeScreen: { screen: WelcomeScreen },
+  SignUp: { screen: SignUp },
+  HomeScreen: { screen: HomeScreen },
+  Drawer: { screen: AppDrawerNavigator },
+  BottomTab: { screen: TabNavigator },
+})
+
+const AppContainer = createAppContainer(switchNavigator);
