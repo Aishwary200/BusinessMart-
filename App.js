@@ -7,6 +7,8 @@ import { TabNavigator } from './component/AppTabNavigator'
 import WelcomeScreen from './screens/WelcomeScreen';
 import SignUp from './screens/SignUpScreen'
 import HomeScreen from './screens/HomeScreen';
+import sellerSignUp from './screens/SellerScreen';
+import Permission from './screens/permissionScreen'
 
 export default class App extends Component {
   render() {
@@ -33,6 +35,7 @@ const switchNavigator = createSwitchNavigator({
   HomeScreen: { screen: HomeScreen },
   Drawer: { screen: AppDrawerNavigator },
   BottomTab: { screen: TabNavigator },
+  sellerSignUp: { screen: sellerSignUp }
 })
 
 const AppContainer = createAppContainer(switchNavigator);

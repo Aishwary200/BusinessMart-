@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import db from '../config'
 import firebase from 'firebase'
+var gstCheck = false
 
-export default class SignUp extends Component {
+export default class sellerSignUp extends Component {
     constructor() {
         super()
         this.state = {
@@ -13,12 +14,18 @@ export default class SignUp extends Component {
             lastName: '',
             address: '',
             contact: '',
-            confirmPassword: ''
+            companyName: '',
+            confirmPassword: '',
+            GST: ''
         }
     }
-    userSignUp = (emailId, password, confirmPassword) => {
+    userSignUp = (emailId, password, confirmPassword, gst) => {
+        var reggst = /^([0-9]){2}([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}([0-9]){1}([a-zA-Z]){1}([0-9]){1}?$/;
         if (password !== confirmPassword) {
             return Alert.alert("Password and Confirm password does not match check the password")
+        }
+        else if (!reggst.test(gst) && reggst != '') {
+            alert('GST Identification Number is not valid. It should be in this "11AAAAA1111Z1A1" format');
         }
         else {
             firebase.auth().createUserWithEmailAndPassword(emailId, password)
@@ -28,7 +35,9 @@ export default class SignUp extends Component {
                         first_name: this.state.firstName,
                         last_name: this.state.lastName,
                         contact_number: this.state.contact,
-                        address: this.state.address
+                        address: this.state.address,
+                        companyName: this.state.companyName,
+                        gst: this.state.GST
                     })
                 })
                 .catch(function (error) {
@@ -76,6 +85,21 @@ export default class SignUp extends Component {
                                 })
                             }}
                         />
+                        <TextInput style={styles.formTextInput} placeholder="Comapny Name"
+                            onChangeText={(text) => {
+                                this.setState({
+                                    companyName: text
+                                })
+                            }}
+                        />
+                        <TextInput style={styles.formTextInput} placeholder="GST Number"
+                            maxLength={15}
+                            onChangeText={(text) => {
+                                this.setState({
+                                    GST: text
+                                })
+                            }}
+                        />
                         <TextInput style={styles.formTextInput} placeholder="Enter password"
                             secureTextEntry={true}
                             onChangeText={(text) => {
@@ -94,7 +118,9 @@ export default class SignUp extends Component {
                         />
                         <View style={styles.button}>
                             <TouchableOpacity style={styles.registerButton}
-                                onPress={() => this.userSignUp(this.state.emailId, this.state.password, this.state.confirmPassword)}>
+                                onPress={() => this.userSignUp(
+                                    this.state.emailId, this.state.password, this.state.confirmPassword, this.state.GST
+                                )}>
                                 <Text style={styles.buttonText}>Sign Up</Text>
                             </TouchableOpacity>
                         </View>

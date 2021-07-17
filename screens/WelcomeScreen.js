@@ -59,7 +59,7 @@ export default class WelcomeScreen extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button}
                         onPress={() => {
-                            this.props.navigation.navigate('SignUp')
+                            this.props.navigation.navigate('sellerSignUp')
                         }}>
                         <Text style={styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
