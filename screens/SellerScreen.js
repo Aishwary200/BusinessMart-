@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import db from '../config'
 import firebase from 'firebase'
-var gstCheck = false
 
 export default class sellerSignUp extends Component {
     constructor() {

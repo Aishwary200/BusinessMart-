@@ -34,7 +34,7 @@ export default class WelcomeScreen extends Component {
         return (
             <View style={StyleSheet.container}>
                 <View>
-                    <Text style={styles.title}>Book Santa</Text>
+                    <Text style={styles.title}>Business media</Text>
                 </View>
                 <View>
                     <TextInput style={styles.loginBox} placeholder="abc@example.com"

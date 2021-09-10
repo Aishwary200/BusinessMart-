@@ -8,7 +8,6 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import SignUp from './screens/SignUpScreen'
 import HomeScreen from './screens/HomeScreen';
 import sellerSignUp from './screens/SellerScreen';
-import Permission from './screens/permissionScreen'
 
 export default class App extends Component {
   render() {
